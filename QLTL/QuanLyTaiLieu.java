@@ -1,24 +1,34 @@
 package QLTL;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+
 import java.util.Scanner;
 
+
 public class QuanLyTaiLieu {
-	private TaiLieu[] TLS;
-	private Scanner sc;
-	private int INDEX = 0;
+	private ArrayList<TaiLieu> TLS;
+
+    public QuanLyTaiLieu() {
+        TLS = new ArrayList<>();
+    }
+    
 	
-	public QuanLyTaiLieu(Scanner sc) {
-		super();
-		TLS = new TaiLieu[0];
-		this.sc = sc;
+	
+	public static int inputNumber(Scanner scanner) {
+		int number = -1;
+		do {
+			try {
+				number = Integer.parseInt(scanner.nextLine());
+			} catch (RuntimeException e) {
+				System.out.println("Sai định dạng, mời nhập lại:");
+			}
+		} while (number == -1);
+		return number;
 	}
 	
 	public void themTaiLieu(int choice) {
-		TaiLieu[] newTLS = Arrays.copyOf(TLS, TLS.length + 1);
-		newTLS[INDEX] = taoTaiLieu(choice);
-		TLS = newTLS;
-		INDEX++;
+		TLS.add(taoTaiLieu(choice));
+        System.out.println("Thêm mới thành công!");
 	}
 	
 	public void hienThiDanhSach() {
@@ -28,9 +38,10 @@ public class QuanLyTaiLieu {
 			}
 		}
 	}
-	
+	Scanner sc = new Scanner(System.in);
 	public TaiLieu taoTaiLieu(int choice) {
 		TaiLieu TL;
+		
 		System.out.println("Nhập mã tài liệu:");
 		String MaTL = sc.nextLine();
 		System.out.println("Nhập nhà xuất bản:");
@@ -45,6 +56,7 @@ public class QuanLyTaiLieu {
 			int SoTrang = sc.nextInt();
 			TL = new Sach(MaTL, NhaXB, SoBanPH, TenTG, SoTrang);
 		} else if (choice == 2) {
+			sc.nextLine();
 			System.out.println("Nhập số phát hành: ");
 			int SoPH = sc.nextInt();
 			sc.nextLine();
@@ -59,31 +71,8 @@ public class QuanLyTaiLieu {
 		return TL;
 	}
 	
-	public static int inputNumber(Scanner scanner) {
-		int number = -1;
-		do {
-			try {
-				number = Integer.parseInt(scanner.nextLine());
-			} catch (RuntimeException e) {
-				System.out.println("Sai định dạng, mời nhập lại:");
-			}
-		} while (number == -1);
-		return number;
-	}
-	
-	
 	public void xoaTheoTen(String name) {
-		TaiLieu[] newTLs = new TaiLieu[TLS.length - 1];
-		for (int i = 0, j = 0; i < TLS.length - 1; i++, j++) {
-			if (!TLS[i].getMaTL().equals(name)) {
-				newTLs[i] = TLS[j];
-			} else {
-				j++;
-				newTLs[i] = TLS[j];
-			}
-		}
-		TLS = newTLs;
-		INDEX--;
+		TLS.removeIf(TaiLieu -> TaiLieu.getMaTL().equals(name));
 	}
 	
 	public void traTaiLieu(String MaTL) {

@@ -4,6 +4,12 @@ public class Sach extends TaiLieu{
 	private String TenTG;
 	private int SoTrang;
 	
+	public Sach(String tenTG, int soTrang) {
+		super();
+		TenTG = tenTG;
+		SoTrang = soTrang;
+	}
+	
 	public Sach() {
 		super();
 	}

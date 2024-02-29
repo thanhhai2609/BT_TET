@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		QuanLyTaiLieu qls = new QuanLyTaiLieu(scanner);
+		QuanLyTaiLieu qls = new QuanLyTaiLieu();
 		int choice;
 		do {
 			System.out.println("Admin");
@@ -39,13 +39,30 @@ public class Main {
 		} while (choice != 0);
 	}
 
+	
 	public static void addObject(Scanner scanner, QuanLyTaiLieu qls) {
-		System.out.println("Chọn loại tài liệu: ");
-		System.out.println("1. Sách");
-		System.out.println("2. Tạp chí");
-		System.out.println("3. Báo");
-		System.out.println("Nhập lựa chọn của bạn: ");
-		int choice1 = QuanLyTaiLieu.inputNumber(scanner);
-		qls.themTaiLieu(choice1);
+	    System.out.println("Chọn loại tài liệu: ");
+	    System.out.println("1. Sách");
+	    System.out.println("2. Tạp chí");
+	    System.out.println("3. Báo");
+	    System.out.println("Nhập lựa chọn của bạn: ");
+	    
+	    int choice1 = QuanLyTaiLieu.inputNumber(scanner);
+	    TaiLieu TL;
+	    switch (choice1) {
+	        case 1:
+	            TL = new Sach();
+	            break;
+	        case 2:
+	            TL = new TapChi();
+	            break;
+	        case 3:
+	            TL = new Bao();
+	            break;
+	        default:
+	            System.out.println("Lựa chọn không hợp lệ.");
+	            return;
+	    }
+	    qls.themTaiLieu(choice1);
 	}
 }

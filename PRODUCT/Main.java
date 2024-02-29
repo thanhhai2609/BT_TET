@@ -38,65 +38,17 @@ public class Main {
 
 				switch (choice) {
 				case 1:
-					try {
-						System.out.print("Enter ID for new product: ");
-						Long newId = scanner.nextLong();
-						scanner.nextLine();
-						System.out.print("Enter name for new product: ");
-						String newName = scanner.nextLine();
-						System.out.print("Enter price for new product: ");
-						Double newPrice = scanner.nextDouble();
-						System.out.print("Enter Quantity for new product: ");
-						Integer newQuantity = scanner.nextInt();
-						System.out.print("Enter Category Name for new product: ");
-						String newCategoryName = scanner.next();
-						Category newCategory = new Category(newCategoryName);
-
-						productManager.addProduct(new Product(newId, newName, newPrice, newQuantity, newCategory));
-						System.out.println("New infomation is updated.");
-
-					} catch (Exception e) {
-						System.out.println("Invalid data input.");
-						scanner.nextLine();
-					}
+					productManager.addNewProduct();
 					break;
 				case 2:
-					System.out.print("Enter ID for product need to update:  ");
-					Long idToUpdate = scanner.nextLong();
-					scanner.nextLine();
-
-					System.out.print("Enter ID for new product:  ");
-					String newName = scanner.nextLine();
-					System.out.print("Enter price for new product:  ");
-					Double newPrice = scanner.nextDouble();
-					System.out.print("Enter quantity for new product: ");
-					Integer newQuantity = scanner.nextInt();
-					System.out.print("Enter Category Name for new product:  ");
-					String newCategoryName = scanner.next();
-					Category newCategory = new Category(newCategoryName);
-					productManager.updateProduct(idToUpdate, newName, newPrice, newQuantity, newCategory);
-					System.out.println("New infomation is updated.");
+					productManager.update();
 					break;
-
 				case 3:
-					System.out.print("Enter ID for product need to delete: ");
-					Long idToDelete = scanner.nextLong();
-					scanner.nextLine();
-					productManager.deleteProduct(idToDelete);
-					System.out.println("Product is deleted");
+					productManager.delete();
 					break;
 
 				case 4:
-					System.out.print("Enter ID for product need to display: ");
-					Long idToDisplay = scanner.nextLong();
-					scanner.nextLine();
-					Product product = productManager.getProductById(idToDisplay);
-					if (product != null) {
-						System.out.println(product.id + " - " + product.name + " - " + product.price + " - "
-								+ product.quantity + " - " + product.category.name);
-					} else {
-						System.out.println("Can not find the product.");
-					}
+					productManager.showDisplay();
 					break;
 
 				case 5:

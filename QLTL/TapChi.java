@@ -3,11 +3,17 @@ package QLTL;
 public class TapChi extends TaiLieu{
 	private int SoPH;
 	private String ThangPH;
-	
+
+	public TapChi(int soPH, String thangPH) {
+		super();
+		SoPH = soPH;
+		ThangPH = thangPH;
+	}
+
 	public TapChi() {
 		super();
 	}
-
+	
 	public TapChi(String MaTL, String NhaXB, int SoBanPH, int soPH, String thangPH) {
 		super(MaTL, NhaXB, SoBanPH);
 		this.SoPH = soPH;
